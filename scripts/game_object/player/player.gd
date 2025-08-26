@@ -4,6 +4,16 @@ extends CharacterBody2D
 @export var speed: float = 300.0
 @export var jump_velocity: float = -400.0
 
+var number_colliding_bodies := 0
+
+@onready var damage_interval_timer: Timer = $DamageIntervalTimer
+@onready var health_component: HealthComponent = $HealthComponent
+
+
+func _ready() -> void:
+	$CollisionArea2D.body_entered.connect(on_body_entered)
+	$CollisionArea2D.body_exited.connect(on_body_exited)
+
 
 func _process(delta: float) -> void:
 	if not is_on_floor():
@@ -19,3 +29,19 @@ func _process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
 	move_and_slide()
+
+
+func check_deal_damage() -> void:
+	if number_colliding_bodies == 0 || !damage_interval_timer.is_stopped():
+		return
+	health_component.damage(1)
+	damage_interval_timer.start()
+
+
+func on_body_entered(other_body: Node2D) -> void:
+	number_colliding_bodies += 1
+	check_deal_damage()
+
+
+func on_body_exited(other_body: Node2D) -> void:
+	number_colliding_bodies -= 1
