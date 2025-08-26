@@ -1,8 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://bi7s2f0me84a5"]
+[gd_scene load_steps=33 format=3 uid="uid://bi7s2f0me84a5"]
 
 [ext_resource type="Script" uid="uid://bh0e0bqbp68v1" path="res://scripts/game_object/player/player.gd" id="1_8afob"]
 [ext_resource type="PackedScene" uid="uid://joty65jaxm6k" path="res://scenes/components/health_component.tscn" id="2_6b2fh"]
 [ext_resource type="Texture2D" uid="uid://b2f6aythmw2de" path="res://assets/Warrior_SheetnoEffect.png" id="3_s3670"]
+[ext_resource type="PackedScene" uid="uid://c6nwi5jnrilsr" path="res://scenes/abilities/attack_controller/attack_controller.tscn" id="3_ss5pk"]
 [ext_resource type="PackedScene" uid="uid://6b8sexvsc1lq" path="res://scenes/components/hitbox_component.tscn" id="4_tj6oj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s3670"]
@@ -12,7 +13,7 @@ radius = 32.0
 radius = 15.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tj6oj"]
-size = Vector2(27, 17)
+size = Vector2(27, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ss5pk"]
 atlas = ExtResource("3_s3670")
@@ -152,7 +153,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b6m00")
 }],
-"loop": false,
+"loop": true,
 "name": &"slash",
 "speed": 12.0
 }, {
@@ -181,7 +182,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_m5fp2")
 }],
-"loop": false,
+"loop": true,
 "name": &"walk",
 "speed": 11.0
 }]
@@ -191,8 +192,16 @@ animations = [{
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 0
 script = ExtResource("1_8afob")
+speed = null
+jump_velocity = null
+acceleration = null
+friction = null
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_6b2fh")]
+
+[node name="Abilities" type="Node" parent="."]
+
+[node name="AttackController" parent="Abilities" instance=ExtResource("3_ss5pk")]
 
 [node name="DamageIntervalTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -217,11 +226,10 @@ position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_6b2fh")
 
 [node name="HitboxComponent" parent="." groups=["player"] instance=ExtResource("4_tj6oj")]
-visible = false
 position = Vector2(6, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(15.5, -20)
+position = Vector2(18, -20)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_tj6oj")
 disabled = true

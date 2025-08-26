@@ -7,19 +7,21 @@ extends CharacterBody2D
 @export var friction: float = 1200
 
 var number_colliding_bodies := 0
+var is_attacking: bool = false
+var base_damage: float = 5
 
 @onready var damage_interval_timer: Timer = $DamageIntervalTimer
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var anim_sprite: AnimatedSprite2D = %AnimatedSprite2D
 @onready var visuals: Node2D = $Visuals
+@onready var hitbox_collision: CollisionShape2D = $HitboxComponent/CollisionShape2D
 
 
 func _ready() -> void:
 	$CollisionArea2D.body_entered.connect(on_body_entered)
 	$CollisionArea2D.body_exited.connect(on_body_exited)
-
-	anim_sprite.flip_h = false
-
+	anim_sprite.animation_finished.connect(on_animation_finished)
 
 func _process(delta: float) -> void:
 
@@ -29,9 +31,16 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(GameConstants.JUMP) and is_on_floor():
 		velocity.y = jump_velocity
 
+	if Input.is_action_just_pressed(GameConstants.ATTACK) and not is_attacking:
+		is_attacking = true
+		attack()
+
 	var direction: float = get_direction()
-	if direction != 0:
-		velocity.x = move_toward(velocity.x , direction * speed, acceleration * delta)
+	if !is_attacking:
+		if direction != 0:
+			velocity.x = move_toward(velocity.x , direction * speed, acceleration * delta)
+		else:
+			velocity.x = move_toward(velocity.x, 0, friction * delta)
 	else:
 		velocity.x = move_toward(velocity.x, 0, friction * delta)
 
@@ -44,23 +53,42 @@ func get_direction() -> float:
 
 
 func update_animations(direction: float) -> void:
+	if is_attacking:
+		return
+
 	if direction > 0:
 		visuals.scale.x = 1
-		# anim_sprite.flip_h = false
+		hitbox_component.scale.x = 1
 	elif direction < 0:
 		visuals.scale.x = -1
-		# anim_sprite.flip_h = true
+		hitbox_component.scale.x = -1
 
 	if abs(velocity.x) > 5:
-		anim_sprite.play("walk")
+		anim_sprite.play(GameConstants.WALK)
 	else:
-		anim_sprite.play("idle")
+		anim_sprite.play(GameConstants.IDLE)
+
+
+func attack() -> void:
+	print("attack")
+	anim_sprite.play(GameConstants.SLASH)
+	hitbox_component.damage = base_damage
+
+	await get_tree().create_timer(0.45).timeout
+	if is_attacking:
+		hitbox_collision.disabled = false
+
+
+func on_animation_finished() -> void:
+	if anim_sprite.animation == GameConstants.SLASH:
+		is_attacking = false
+		hitbox_collision.disabled = true
 
 
 func check_deal_damage() -> void:
 	if number_colliding_bodies == 0 || !damage_interval_timer.is_stopped():
 		return
-	health_component.damage(1)
+	health_component.damage(5)
 	damage_interval_timer.start()
 
 
