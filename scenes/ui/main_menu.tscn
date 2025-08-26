@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwan85qo6fu2j"]
+
+[ext_resource type="Script" uid="uid://ds72i121bvgsk" path="res://scripts/ui/main_menu.gd" id="1_fe2o3"]
+[ext_resource type="PackedScene" uid="uid://bumbtn1h1kxgx" path="res://scenes/ui/sound_button.tscn" id="1_sl1te"]
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_fe2o3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game Title"
+
+[node name="PlayButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_sl1te")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Play"
+
+[node name="OptionsButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_sl1te")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_sl1te")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
