@@ -32,3 +32,7 @@ position = Vector2(191, 336)
 
 [node name="BasicEnemy" parent="Entities" instance=ExtResource("4_jyhfs")]
 position = Vector2(1478, 336)
+patrol_speed = null
+chase_speed = null
+patrol_distance = null
+detection_range = null
