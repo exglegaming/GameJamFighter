@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://doxkdxojibpvp"]
+
+[ext_resource type="Script" uid="uid://dovy3oq2oinq7" path="res://scripts/components/collection_component.gd" id="1_pkj6j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s3670"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pkj6j"]
+radius = 5.0
+
+[node name="PickupArea2D" type="Area2D"]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("1_pkj6j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -17)
+shape = SubResource("CircleShape2D_s3670")
+debug_color = Color(1.20327e-06, 0.640866, 0.343335, 0.42)
+
+[node name="InnerArea" type="Area2D" parent="."]
+position = Vector2(0, -17)
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InnerArea"]
+shape = SubResource("CircleShape2D_pkj6j")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="InnerArea" to="." method="_on_inner_area_body_entered"]

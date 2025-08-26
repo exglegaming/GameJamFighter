@@ -3,10 +3,8 @@
 [ext_resource type="Script" uid="uid://bh0e0bqbp68v1" path="res://scripts/game_object/player/player.gd" id="1_8afob"]
 [ext_resource type="PackedScene" uid="uid://joty65jaxm6k" path="res://scenes/components/health_component.tscn" id="2_6b2fh"]
 [ext_resource type="Texture2D" uid="uid://b2f6aythmw2de" path="res://assets/Warrior_SheetnoEffect.png" id="3_s3670"]
+[ext_resource type="PackedScene" uid="uid://doxkdxojibpvp" path="res://scenes/components/collection_component.tscn" id="3_tj6oj"]
 [ext_resource type="PackedScene" uid="uid://6b8sexvsc1lq" path="res://scenes/components/hitbox_component.tscn" id="4_tj6oj"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_s3670"]
-radius = 32.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6b2fh"]
 radius = 15.0
@@ -198,14 +196,7 @@ script = ExtResource("1_8afob")
 wait_time = 0.5
 one_shot = true
 
-[node name="PickupArea2D" type="Area2D" parent="."]
-visible = false
-collision_layer = 0
-collision_mask = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea2D"]
-position = Vector2(0, -17)
-shape = SubResource("CircleShape2D_s3670")
+[node name="CollectionComponent" parent="." instance=ExtResource("3_tj6oj")]
 
 [node name="CollisionArea2D" type="Area2D" parent="."]
 visible = false

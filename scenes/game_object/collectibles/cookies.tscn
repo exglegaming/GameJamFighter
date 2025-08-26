@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1kvav2bbo8bh"]
+
+[ext_resource type="Texture2D" uid="uid://bb108dl2msr1r" path="res://icon.svg" id="1_aww2w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c40fl"]
+
+[node name="Cookies" type="RigidBody2D"]
+collision_layer = 16
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_aww2w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_c40fl")
