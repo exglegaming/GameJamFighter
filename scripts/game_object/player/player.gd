@@ -10,7 +10,8 @@ var number_colliding_bodies := 0
 
 @onready var damage_interval_timer: Timer = $DamageIntervalTimer
 @onready var health_component: HealthComponent = $HealthComponent
-@onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var anim_sprite: AnimatedSprite2D = %AnimatedSprite2D
+@onready var visuals: Node2D = $Visuals
 
 
 func _ready() -> void:
@@ -44,9 +45,11 @@ func get_direction() -> float:
 
 func update_animations(direction: float) -> void:
 	if direction > 0:
-		anim_sprite.flip_h = false
+		visuals.scale.x = 1
+		# anim_sprite.flip_h = false
 	elif direction < 0:
-		anim_sprite.flip_h = true
+		visuals.scale.x = -1
+		# anim_sprite.flip_h = true
 
 	if abs(velocity.x) > 5:
 		anim_sprite.play("walk")

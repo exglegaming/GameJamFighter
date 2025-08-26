@@ -4,6 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://joty65jaxm6k" path="res://scenes/components/health_component.tscn" id="2_6b2fh"]
 [ext_resource type="Texture2D" uid="uid://b2f6aythmw2de" path="res://assets/Warrior_SheetnoEffect.png" id="3_s3670"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_s3670"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6b2fh"]
+radius = 15.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ss5pk"]
 atlas = ExtResource("3_s3670")
 region = Rect2(0, 0, 69, 44)
@@ -101,12 +107,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_s3670"]
-radius = 32.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_6b2fh"]
-radius = 15.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_8afob"]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
@@ -118,12 +118,6 @@ script = ExtResource("1_8afob")
 [node name="DamageIntervalTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(2, -18)
-sprite_frames = SubResource("SpriteFrames_28lpv")
-animation = &"idle"
-offset = Vector2(6, -4)
 
 [node name="PickupArea2D" type="Area2D" parent="."]
 visible = false
@@ -142,6 +136,15 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D"]
 position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_6b2fh")
+
+[node name="Visuals" type="Node2D" parent="."]
+position = Vector2(0, -21)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_28lpv")
+animation = &"idle"
+offset = Vector2(6, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
