@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(GameConstants.JUMP) and is_on_floor():
 		velocity.y = jump_velocity
 
-	var direction := Input.get_axis(GameConstants.MOVE_LEFT, GameConstants.MOVE_RIGHT)
+	var direction: float = Input.get_axis(GameConstants.MOVE_LEFT, GameConstants.MOVE_RIGHT)
 	if direction:
 		velocity.x = direction * speed
 	else:
