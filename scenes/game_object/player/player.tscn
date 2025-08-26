@@ -152,7 +152,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"slash",
-"speed": 12.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -208,7 +208,6 @@ position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_6b2fh")
 
 [node name="HitboxComponent" parent="." groups=["player"] instance=ExtResource("4_tj6oj")]
-visible = false
 position = Vector2(6, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]

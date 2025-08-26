@@ -74,7 +74,7 @@ func attack() -> void:
 	anim_sprite.play(GameConstants.SLASH)
 	hitbox_component.damage = base_damage
 
-	await get_tree().create_timer(0.45).timeout
+	await get_tree().create_timer(0.4).timeout
 	if is_attacking:
 		hitbox_collision.disabled = false
 
