@@ -199,6 +199,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="CollectionComponent" parent="." instance=ExtResource("3_tj6oj")]
+visible = false
 
 [node name="CollisionArea2D" type="Area2D" parent="."]
 visible = false
@@ -210,6 +211,7 @@ position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_6b2fh")
 
 [node name="HitboxComponent" parent="." groups=["player"] instance=ExtResource("4_tj6oj")]
+visible = false
 position = Vector2(6, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
