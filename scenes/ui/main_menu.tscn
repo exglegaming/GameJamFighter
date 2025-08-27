@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwan85qo6fu2j"]
+[gd_scene load_steps=4 format=3 uid="uid://cwan85qo6fu2j"]
 
 [ext_resource type="Script" uid="uid://ds72i121bvgsk" path="res://scripts/ui/main_menu.gd" id="1_fe2o3"]
 [ext_resource type="PackedScene" uid="uid://bumbtn1h1kxgx" path="res://scenes/ui/sound_button.tscn" id="1_sl1te"]
+[ext_resource type="Theme" uid="uid://d30hkm1tbj1k" path="res://resources/theme.tres" id="2_1g8jr"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_fe2o3")
@@ -17,6 +18,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("2_1g8jr")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2

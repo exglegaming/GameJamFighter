@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bt6w6ll6nsys8"]
+[gd_scene load_steps=5 format=3 uid="uid://bt6w6ll6nsys8"]
 
 [ext_resource type="PackedScene" uid="uid://bumbtn1h1kxgx" path="res://scenes/ui/sound_button.tscn" id="1_ta2k2"]
 [ext_resource type="Script" uid="uid://d2kuuramte2ku" path="res://scripts/ui/options_menu.gd" id="1_wj2x4"]
+[ext_resource type="Theme" uid="uid://d30hkm1tbj1k" path="res://resources/theme.tres" id="2_imaij"]
+
+[sub_resource type="Theme" id="Theme_wj2x4"]
 
 [node name="OptionsMenu" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_wj2x4")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -12,11 +16,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_wj2x4")
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("2_imaij")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
