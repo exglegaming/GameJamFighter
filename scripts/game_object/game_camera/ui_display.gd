@@ -3,6 +3,8 @@ extends Node
 @onready var attack_name_text: RichTextLabel = get_node("AttackNameText")
 @onready var ammo_container: HBoxContainer = get_node("AmmoContainer")
 @onready var ammo_ui: Array = ammo_container.get_children()
+
+
 func update_ui(player: Node2D) -> void:
 	if !player:
 		return
