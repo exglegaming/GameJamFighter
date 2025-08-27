@@ -6,9 +6,15 @@ extends CharacterBody2D
 @export var acceleration: float = 1500
 @export var friction: float = 1200
 
+@export_category("Weapon")
+@export var weapon_ammo:Array = [0,5] # ammo the weapon has right now, there is no cap on ammo
+@export var projectile_container:Node # assigned in the main scene inspector
+@export var projectile:PackedScene
+
 var number_colliding_bodies := 0
 var is_attacking: bool = false
 var base_damage: float = 5
+var weapon: int = 0
 
 @onready var damage_interval_timer: Timer = $DamageIntervalTimer
 @onready var health_component: HealthComponent = $HealthComponent
@@ -34,6 +40,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(GameConstants.ATTACK) and not is_attacking:
 		is_attacking = true
 		attack()
+	
+	if Input.is_action_just_pressed("switch_attack"):
+		switch_weapon()
 
 	var direction: float = get_direction()
 	if !is_attacking:
@@ -76,9 +85,30 @@ func attack() -> void:
 
 	await get_tree().create_timer(0.4).timeout
 	if is_attacking:
-		hitbox_collision.disabled = false
+		match weapon:
+			0:
+				hitbox_collision.disabled = false
+			1:
+				throwing_attack()
 
+# cycle between different weapons
+func switch_weapon() -> void:
+	weapon = (weapon + 1) % 2 # currently there are just 2 weapons, hence the magic number
+	print("current weapon: " + str(weapon))
+# throws a projectile
+func throwing_attack():
+	if weapon_ammo[1] > 0:
+		weapon_ammo[1] -= 1
+		var bullet:RigidBody2D = projectile.instantiate()
+		bullet.position = Vector2(position.x, position.y-1)
+		projectile_container.add_child(bullet)
 
+		var impulse = Vector2(1,-1) # up is -1 here
+		if visuals.scale.x < 0:
+			impulse = Vector2(-1,-1)
+		bullet.apply_impulse(impulse*350)
+		
+		
 func on_animation_finished() -> void:
 	if anim_sprite.animation == GameConstants.SLASH:
 		is_attacking = false

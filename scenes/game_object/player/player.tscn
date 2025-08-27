@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://bi7s2f0me84a5"]
+[gd_scene load_steps=33 format=3 uid="uid://bi7s2f0me84a5"]
 
 [ext_resource type="Script" uid="uid://bh0e0bqbp68v1" path="res://scripts/game_object/player/player.gd" id="1_8afob"]
 [ext_resource type="PackedScene" uid="uid://joty65jaxm6k" path="res://scenes/components/health_component.tscn" id="2_6b2fh"]
+[ext_resource type="PackedScene" uid="uid://cgvuk04fylim5" path="res://scenes/game_object/player/Throw_Projectile.tscn" id="2_pknkg"]
 [ext_resource type="Texture2D" uid="uid://b2f6aythmw2de" path="res://assets/Warrior_SheetnoEffect.png" id="3_s3670"]
 [ext_resource type="PackedScene" uid="uid://doxkdxojibpvp" path="res://scenes/components/collection_component.tscn" id="3_tj6oj"]
 [ext_resource type="PackedScene" uid="uid://6b8sexvsc1lq" path="res://scenes/components/hitbox_component.tscn" id="4_tj6oj"]
@@ -189,6 +190,7 @@ animations = [{
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 0
 script = ExtResource("1_8afob")
+projectile = ExtResource("2_pknkg")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_6b2fh")]
 
