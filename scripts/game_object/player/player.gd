@@ -91,10 +91,13 @@ func attack() -> void:
 			1:
 				throwing_attack()
 
+
 # cycle between different weapons
 func switch_weapon() -> void:
 	weapon = (weapon + 1) % 2 # currently there are just 2 weapons, hence the magic number
 	print("current weapon: " + str(weapon))
+
+
 # throws a projectile
 func throwing_attack():
 	if weapon_ammo[1] > 0:
