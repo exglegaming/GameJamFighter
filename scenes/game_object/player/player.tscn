@@ -182,7 +182,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"walk",
-"speed": 11.0
+"speed": 12.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8afob"]
@@ -226,7 +226,7 @@ position = Vector2(0, -21)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_28lpv")
-animation = &"idle"
+animation = &"walk"
 autoplay = "idle"
 offset = Vector2(6, -1)
 
