@@ -30,11 +30,16 @@ shape = SubResource("RectangleShape2D_jyhfs")
 
 [node name="Entities" type="Node2D" parent="." groups=["entities_layer"]]
 
-[node name="Player" parent="Entities" instance=ExtResource("2_sugp2")]
+
+[node name="Player" parent="Entities" node_paths=PackedStringArray("projectile_container") instance=ExtResource("2_sugp2")]
 unique_name_in_owner = true
+
 position = Vector2(191, 336)
+projectile_container = NodePath("../../ProjectileContainer")
 
 [node name="BasicEnemy" parent="Entities" instance=ExtResource("4_jyhfs")]
 position = Vector2(1478, 336)
 
 [node name="Cookies" parent="." instance=ExtResource("5_tbgi4")]
+
+[node name="ProjectileContainer" type="Node2D" parent="."]

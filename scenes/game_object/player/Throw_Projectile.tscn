@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgvuk04fylim5"]
+
+[ext_resource type="Texture2D" uid="uid://bb108dl2msr1r" path="res://icon.svg" id="1_mev7v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mev7v"]
+
+[node name="ThrowProjectile" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 9
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0.52549, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_mev7v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mev7v")
+debug_color = Color(1.20327e-07, 0.28154, 0.33292, 0.42)
