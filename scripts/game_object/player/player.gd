@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var friction: float = 1200
 
 @export_category("Weapon")
-@export var weapon_ammo:Array = [0,5] # ammo the weapon has right now, there is no cap on ammo
+@export var weapon_ammo:Array = [0,6,3] # ammo the weapon has right now, there is no cap on ammo
 @export var projectile_container:Node # assigned in the main scene inspector
 @export var projectile:PackedScene
 
@@ -90,11 +90,14 @@ func attack() -> void:
 				hitbox_collision.disabled = false
 			1:
 				throwing_attack()
-
+			2:
+				dash_attack()
+#region funcs for handling different attacks
 # cycle between different weapons
 func switch_weapon() -> void:
-	weapon = (weapon + 1) % 2 # currently there are just 2 weapons, hence the magic number
+	weapon = (weapon + 1) % weapon_ammo.size() # add new item to weapon_ammo array to add new weapon
 	print("current weapon: " + str(weapon))
+	
 # throws a projectile
 func throwing_attack():
 	if weapon_ammo[1] > 0:
@@ -102,12 +105,21 @@ func throwing_attack():
 		var bullet:RigidBody2D = projectile.instantiate()
 		bullet.position = Vector2(position.x, position.y-1)
 		projectile_container.add_child(bullet)
+		# make the bullet do damage
+		var bullet_hitbox:HitboxComponent = bullet.get_node_or_null("HitboxComponent")
+		if bullet_hitbox:
+			bullet_hitbox.damage = base_damage
 
-		var impulse = Vector2(1,-1) # up is -1 here
-		if visuals.scale.x < 0:
-			impulse = Vector2(-1,-1)
+		var impulse = Vector2(sign(visuals.scale.x),-1) # up is -1 here
 		bullet.apply_impulse(impulse*350)
-		
+
+func dash_attack():
+	if weapon_ammo[2] > 0:
+		weapon_ammo[2] -= 1
+		hitbox_collision.disabled = false
+		velocity.x = sign(visuals.scale.x) * 800
+	
+#endregion
 		
 func on_animation_finished() -> void:
 	if anim_sprite.animation == GameConstants.SLASH:
