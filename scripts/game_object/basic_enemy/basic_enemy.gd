@@ -9,13 +9,13 @@ extends CharacterBody2D
 @export var detection_range: float = 150
 @export var giving_up_range: float = 350
 
-enum State {
+enum state {
 	PATROL,
 	CHASE,
 	IDLE
 }
 
-var current_state: State = State.PATROL
+var current_state: state = state.PATROL
 var patrol_direction: int = 1
 var original_patrol_direction: int = 1
 var player: CharacterBody2D = null
@@ -42,11 +42,11 @@ func _process(delta: float) -> void:
 	check_player_detection()
 
 	match current_state:
-		State.PATROL:
+		state.PATROL:
 			patrol_behavior()
-		State.CHASE:
+		state.CHASE:
 			chase_behavior()
-		State.IDLE:
+		state.IDLE:
 			idle_behavior()
 	
 	move_and_slide()
@@ -60,13 +60,13 @@ func check_player_detection() -> void:
 	var distance_to_player: float = global_position.distance_to(player.global_position)
 
 	if distance_to_player <= detection_range:
-		if current_state == State.PATROL:
-			current_state = State.CHASE
+		if current_state == state.PATROL:
+			current_state = state.CHASE
 			MusicPlayer.on_battle()
 			print("Player detected - chasing!")
 	else:
-		if current_state == State.CHASE && distance_to_player >= giving_up_range:
-			current_state = State.PATROL
+		if current_state == state.CHASE && distance_to_player >= giving_up_range:
+			current_state = state.PATROL
 			MusicPlayer.on_outside_combat()
 
 			reset_patrol_direction()
@@ -100,7 +100,7 @@ func patrol_behavior() -> void:
 
 func chase_behavior() -> void:
 	if not player:
-		current_state = State.PATROL
+		current_state = state.PATROL
 		return
 	
 	var direction_to_player = sign(player.global_position.x - global_position.x)
@@ -114,8 +114,8 @@ func chase_behavior() -> void:
 func idle_behavior() -> void:
 	velocity.x = 0
 	await get_tree().create_timer(1.0).timeout
-	if current_state == State.IDLE:
-		current_state = State.PATROL
+	if current_state == state.IDLE:
+		current_state = state.PATROL
 
 
 func update_visuals() -> void:
