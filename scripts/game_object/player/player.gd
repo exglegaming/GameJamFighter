@@ -47,17 +47,20 @@ func _process(delta: float) -> void:
 			var fallVelocity = get_gravity() * delta * fallGravityMultiplier
 			Gravity = fallVelocity
 		velocity += Gravity
-		
 
-	if Input.is_action_just_pressed(GameConstants.JUMP):
-		if CoyoteTimer > 0:
+
+	if !is_attacking:
+		if Input.is_action_just_pressed(GameConstants.JUMP):
+			if CoyoteTimer > 0:
+				velocity.y = jump_velocity
+				CoyoteTimer = 0
+			else :
+				BufferTimer = jumpBufferTime
+		if is_on_floor() and BufferTimer > 0:
 			velocity.y = jump_velocity
-			CoyoteTimer = 0
-		else :
-			BufferTimer = jumpBufferTime
-	if is_on_floor() and BufferTimer > 0:
-		velocity.y = jump_velocity
-		BufferTimer = 0
+			BufferTimer = 0
+
+
 	if Input.is_action_just_released(GameConstants.JUMP) and !is_on_floor() and velocity.y <= minimalJumpVelocity:
 		velocity.y = minimalJumpVelocity
 
