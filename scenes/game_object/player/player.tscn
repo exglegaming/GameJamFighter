@@ -276,8 +276,10 @@ position = Vector2(0, -21)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_28lpv")
-animation = &"walk"
+animation = &"slash"
 autoplay = "idle"
+frame = 7
+frame_progress = 1.0
 offset = Vector2(6, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

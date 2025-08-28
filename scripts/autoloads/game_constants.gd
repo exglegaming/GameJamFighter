@@ -7,6 +7,8 @@ const MOVE_LEFT: String = "move_left"
 const JUMP: String = "jump"
 const ATTACK: String = "attack"
 const SWITCH_ATTACK: String = "switch_attack"
+const COYOTETIME:float = 0.1
+const JUMPBUFFERTIME:float = 0.2
 
 
 # Animations

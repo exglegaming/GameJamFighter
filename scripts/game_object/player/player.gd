@@ -7,6 +7,10 @@ extends CharacterBody2D
 @export var fallGravityMultiplier:float = 2
 @export var acceleration: float = 1500
 @export var friction: float = 1200
+@export var coyoteTime:float = 0.15
+@export var jumpBufferTime:float = 0.1
+var CoyoteTimer:float = 0
+var BufferTimer:float = 0
 
 @export_category("Weapon")
 @export var weapon_ammo:Array = [0,6,3] # ammo the weapon has right now, there is no cap on ammo
@@ -33,16 +37,27 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if not is_on_floor():
+	if is_on_floor():
+		CoyoteTimer = coyoteTime
+	else:
 		var Gravity = get_gravity() * delta
+		CoyoteTimer -= delta
+		BufferTimer -= delta
 		if velocity.y >= 0 :
 			var fallVelocity = get_gravity() * delta * fallGravityMultiplier
 			Gravity = fallVelocity
 		velocity += Gravity
 		
 
-	if Input.is_action_just_pressed(GameConstants.JUMP) and is_on_floor():
+	if Input.is_action_just_pressed(GameConstants.JUMP):
+		if CoyoteTimer > 0:
+			velocity.y = jump_velocity
+			CoyoteTimer = 0
+		else :
+			BufferTimer = jumpBufferTime
+	if is_on_floor() and BufferTimer > 0:
 		velocity.y = jump_velocity
+		BufferTimer = 0
 	if Input.is_action_just_released(GameConstants.JUMP) and !is_on_floor() and velocity.y <= minimalJumpVelocity:
 		velocity.y = minimalJumpVelocity
 
