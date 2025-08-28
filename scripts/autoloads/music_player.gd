@@ -66,7 +66,7 @@ func on_game_start() -> void:
 
 
 func on_battle() -> void:
-	crossfade_to("battle")  
+	play_track("battle")
 	should_loop = true
 	loop_with_delay = false
 
@@ -76,7 +76,7 @@ func on_menu_open() -> void:
 
 
 func on_outside_combat() -> void:
-	crossfade_to("outside_combat")
+	crossfade_to("outside_combat", 2)
 
 
 func on_level_halfway() -> void:
