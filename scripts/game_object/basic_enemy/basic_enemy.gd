@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 @export_category("Detection")
 @export var detection_range: float = 150
+@export var giving_up_range: float = 350
 
 enum State {
 	PATROL,
@@ -64,7 +65,7 @@ func check_player_detection() -> void:
 			MusicPlayer.on_battle()
 			print("Player detected - chasing!")
 	else:
-		if current_state == State.CHASE:
+		if current_state == State.CHASE && distance_to_player >= giving_up_range:
 			current_state = State.PATROL
 			MusicPlayer.on_outside_combat()
 
