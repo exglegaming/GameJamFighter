@@ -3,6 +3,8 @@ extends AudioStreamPlayer
 @export var sound_effects: Dictionary = {
 	"sword_hit": preload("res://assets/audio/Sound effects/Sword hit.mp3"),
 	"sword_attack": preload("res://assets/audio/Sound effects/Sword swoosh.mp3"),
+	"jump": preload("res://assets/audio/Sound effects/Jump.mp3"),
+	"jump_end": preload("res://assets/audio/Sound effects/JumpEnd.mp3"),
 }
 
 var default_volume: float = -10.0 
@@ -40,6 +42,13 @@ func play_sword_hit() -> void:
 
 func play_sword_attack() -> void:
 	play_sound("sword_attack")
+
+
+func play_jump() -> void:
+	play_sound("jump")
+
+func play_jump_end() -> void:
+	play_sound("jump_end")
 
 
 func play_collect_item() -> void:
