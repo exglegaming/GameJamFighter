@@ -69,6 +69,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(GameConstants.ATTACK) and not is_attacking:
 		is_attacking = true
 		attack()
+		await get_tree().create_timer(0.3).timeout
+		SoundEffectsPlayer.play_sound("sword_attack")
 	
 	if Input.is_action_just_pressed("switch_attack"):
 		switch_weapon()
