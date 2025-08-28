@@ -16,7 +16,13 @@ func update_ui(player: Node2D) -> void:
 			update_ammo_ui(player.weapon_ammo[1])
 			attack_name_text.text = "Attack: Throw"
 			ammo_container.show()
+		2:
+			update_ammo_ui(player.weapon_ammo[2])
+			attack_name_text.text = "Attack: Dash"
+			ammo_container.show()
 		_:  
+			attack_name_text.text = "you should check ui_display.gd"
+			ammo_container.hide()
 			pass
 			
 func update_ammo_ui(ammo_count:int) -> void:
