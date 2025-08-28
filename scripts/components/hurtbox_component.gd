@@ -20,3 +20,4 @@ func on_area_entered(other_area: Area2D) -> void:
 	health_component.damage(hitbox_component.damage)
 
 	hit.emit()
+	SoundEffectsPlayer.play_sound("sword_hit")

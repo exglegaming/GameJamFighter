@@ -6,7 +6,7 @@ extends AudioStreamPlayer
 	"battle": preload("res://assets/audio/Battle theme.ogg"),
 	"outside_combat": preload("res://assets/audio/Outside combat.ogg"),
 	"level_halfway": preload("res://assets/audio/Completed half level.mp3"),
-	"level_finished": preload("res://assets/audio/Finished the level.mp3")
+	"level_finished": preload("res://assets/audio/Finished the level.mp3"),
 }
 
 var current_track_name: String = ""

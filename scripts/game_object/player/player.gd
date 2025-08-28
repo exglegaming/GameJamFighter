@@ -22,6 +22,7 @@ var is_attacking: bool = false
 var imunityTime:float = 0.6
 var base_damage: float = 5
 var weapon: int = 0
+var didHitGround: bool = true
 
 @onready var damage_interval_timer: Timer = $DamageIntervalTimer
 @onready var health_component: HealthComponent = $HealthComponent
@@ -40,8 +41,13 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if is_on_floor():
+		if didHitGround == false:
+			SoundEffectsPlayer.play_jump_end()
+			didHitGround = true
+
 		CoyoteTimer = coyoteTime
 	else:
+		didHitGround = false
 		var Gravity = get_gravity() * delta
 		CoyoteTimer -= delta
 		BufferTimer -= delta
@@ -56,6 +62,7 @@ func _process(delta: float) -> void:
 			if CoyoteTimer > 0:
 				velocity.y = jump_velocity
 				CoyoteTimer = 0
+				SoundEffectsPlayer.play_jump() 
 			else :
 				BufferTimer = jumpBufferTime
 		if is_on_floor() and BufferTimer > 0:
@@ -69,6 +76,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed(GameConstants.ATTACK) and not is_attacking:
 		is_attacking = true
 		attack()
+		await get_tree().create_timer(0.3).timeout
+		SoundEffectsPlayer.play_sound("sword_attack")
 	
 	if Input.is_action_just_pressed("switch_attack"):
 		switch_weapon()

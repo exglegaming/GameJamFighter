@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameConstants="*res://scenes/autoloads/game_constants.tscn"
 MusicPlayer="*res://scenes/autoloads/music_player.tscn"
+SoundEffectsPlayer="*res://scenes/autoloads/sound_effects_player.tscn"
 
 [debug]
 
