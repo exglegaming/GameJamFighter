@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://38jigrgd7k8u"]
+[gd_scene load_steps=5 format=3 uid="uid://38jigrgd7k8u"]
 
 [ext_resource type="Script" uid="uid://4hmcdj5yh0bc" path="res://scripts/game_object/game_camera/game_camera.gd" id="1_tad67"]
 [ext_resource type="Texture2D" uid="uid://bb108dl2msr1r" path="res://icon.svg" id="2_8krj5"]
 [ext_resource type="Script" uid="uid://d133hphs6co1a" path="res://scripts/game_object/game_camera/ui_display.gd" id="2_cb6xc"]
+[ext_resource type="PackedScene" uid="uid://ci7kk8kci76pt" path="res://scenes/ui/ui_heart.tscn" id="4_0f44y"]
 
 [node name="GameCamera" type="Camera2D"]
 script = ExtResource("1_tad67")
@@ -17,7 +18,12 @@ offset_right = 320.0
 offset_bottom = 180.0
 script = ExtResource("2_cb6xc")
 
-[node name="AttackNameText" type="RichTextLabel" parent="Control"]
+[node name="AttackUi" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AttackNameText" type="RichTextLabel" parent="Control/AttackUi"]
 layout_mode = 0
 offset_left = 45.0
 offset_top = 2.0
@@ -25,7 +31,7 @@ offset_right = 205.0
 offset_bottom = 42.0
 text = "Attack: Throw"
 
-[node name="ColorRect" type="ColorRect" parent="Control"]
+[node name="ColorRect" type="ColorRect" parent="Control/AttackUi"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 0
 offset_left = 2.0
@@ -33,48 +39,80 @@ offset_top = 2.0
 offset_right = 42.0
 offset_bottom = 42.0
 
-[node name="TextureRect" type="TextureRect" parent="Control/ColorRect"]
+[node name="TextureRect" type="TextureRect" parent="Control/AttackUi/ColorRect"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_8krj5")
 expand_mode = 1
 
-[node name="AmmoContainer" type="HBoxContainer" parent="Control"]
+[node name="AmmoContainer" type="HBoxContainer" parent="Control/AttackUi"]
 layout_mode = 0
 offset_left = 45.0
 offset_top = 22.0
 offset_right = 205.0
 offset_bottom = 38.0
 
-[node name="ColorRect" type="ColorRect" parent="Control/AmmoContainer"]
+[node name="ColorRect" type="ColorRect" parent="Control/AttackUi/AmmoContainer"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 
-[node name="ColorRect2" type="ColorRect" parent="Control/AmmoContainer"]
+[node name="ColorRect2" type="ColorRect" parent="Control/AttackUi/AmmoContainer"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 
-[node name="ColorRect3" type="ColorRect" parent="Control/AmmoContainer"]
+[node name="ColorRect3" type="ColorRect" parent="Control/AttackUi/AmmoContainer"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 
-[node name="ColorRect4" type="ColorRect" parent="Control/AmmoContainer"]
+[node name="ColorRect4" type="ColorRect" parent="Control/AttackUi/AmmoContainer"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 
-[node name="ColorRect5" type="ColorRect" parent="Control/AmmoContainer"]
+[node name="ColorRect5" type="ColorRect" parent="Control/AttackUi/AmmoContainer"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 
-[node name="ColorRect6" type="ColorRect" parent="Control/AmmoContainer"]
+[node name="ColorRect6" type="ColorRect" parent="Control/AttackUi/AmmoContainer"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control/AmmoContainer/ColorRect6"]
+[node name="TextureRect" type="TextureRect" parent="Control/AttackUi/AmmoContainer/ColorRect6"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 offset_right = 16.0
 offset_bottom = 16.0
 texture = ExtResource("2_8krj5")
 expand_mode = 1
+
+[node name="HealthUi" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -312.0
+offset_right = 42.0
+offset_bottom = -272.0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/HealthUi"]
+custom_minimum_size = Vector2(192, 16)
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 16.0
+
+[node name="Ui_Heart" parent="Control/HealthUi/HBoxContainer" instance=ExtResource("4_0f44y")]
+layout_mode = 2
+
+[node name="Ui_Heart2" parent="Control/HealthUi/HBoxContainer" instance=ExtResource("4_0f44y")]
+layout_mode = 2
+
+[node name="Ui_Heart3" parent="Control/HealthUi/HBoxContainer" instance=ExtResource("4_0f44y")]
+layout_mode = 2
+
+[node name="Ui_Heart4" parent="Control/HealthUi/HBoxContainer" instance=ExtResource("4_0f44y")]
+layout_mode = 2
+
+[node name="Ui_Heart5" parent="Control/HealthUi/HBoxContainer" instance=ExtResource("4_0f44y")]
+layout_mode = 2

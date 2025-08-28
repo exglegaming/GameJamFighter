@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci7kk8kci76pt"]
+
+[ext_resource type="Script" uid="uid://ddidfjldflu0x" path="res://scripts/ui/ui_heart.gd" id="1_62sgg"]
+[ext_resource type="Texture2D" uid="uid://bb108dl2msr1r" path="res://icon.svg" id="1_njcea"]
+
+[node name="Ui_Heart" type="Control"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_62sgg")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+clip_contents = true
+layout_mode = 2
+offset_right = 16.0
+offset_bottom = 16.0
+color = Color(1, 1, 1, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+self_modulate = Color(1, 0.0644979, 0.182204, 1)
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+offset_right = 16.0
+offset_bottom = 16.0
+texture = ExtResource("1_njcea")
+expand_mode = 1
