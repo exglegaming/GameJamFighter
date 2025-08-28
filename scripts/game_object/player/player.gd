@@ -19,6 +19,7 @@ var BufferTimer:float = 0
 
 var number_colliding_bodies := 0
 var is_attacking: bool = false
+var imunityTime:float = 0.6
 var base_damage: float = 5
 var weapon: int = 0
 
@@ -34,6 +35,7 @@ func _ready() -> void:
 	$CollisionArea2D.body_entered.connect(on_body_entered)
 	$CollisionArea2D.body_exited.connect(on_body_exited)
 	anim_sprite.animation_finished.connect(on_animation_finished)
+	damage_interval_timer.timeout.connect(damageIntervalEnded)
 
 
 func _process(delta: float) -> void:
@@ -169,8 +171,10 @@ func check_deal_damage() -> void:
 	if number_colliding_bodies == 0 || !damage_interval_timer.is_stopped():
 		return
 	health_component.damage(1)
-	damage_interval_timer.start()
+	damage_interval_timer.start(imunityTime)
 
+func damageIntervalEnded() -> void:
+	check_deal_damage()
 
 func on_body_entered(other_body: Node2D) -> void:
 	number_colliding_bodies += 1
