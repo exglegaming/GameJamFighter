@@ -29,8 +29,8 @@ func _ready() -> void:
 	$CollisionArea2D.body_exited.connect(on_body_exited)
 	anim_sprite.animation_finished.connect(on_animation_finished)
 
-func _process(delta: float) -> void:
 
+func _process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -92,12 +92,15 @@ func attack() -> void:
 				throwing_attack()
 			2:
 				dash_attack()
+
+
 #region funcs for handling different attacks
 # cycle between different weapons
 func switch_weapon() -> void:
 	weapon = (weapon + 1) % weapon_ammo.size() # add new item to weapon_ammo array to add new weapon
 	print("current weapon: " + str(weapon))
 	
+
 # throws a projectile
 func throwing_attack():
 	if weapon_ammo[1] > 0:
@@ -113,14 +116,15 @@ func throwing_attack():
 		var impulse = Vector2(sign(visuals.scale.x),-1) # up is -1 here
 		bullet.apply_impulse(impulse*350)
 
+
 func dash_attack():
 	if weapon_ammo[2] > 0:
 		weapon_ammo[2] -= 1
 		hitbox_collision.disabled = false
 		velocity.x = sign(visuals.scale.x) * 800
-	
 #endregion
-		
+
+	
 func on_animation_finished() -> void:
 	if anim_sprite.animation == GameConstants.SLASH:
 		is_attacking = false
