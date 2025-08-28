@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://p7uqaqtn561w"]
+
+[ext_resource type="Texture2D" uid="uid://bb108dl2msr1r" path="res://icon.svg" id="1_63d0v"]
+[ext_resource type="Script" uid="uid://b5q3236u4as24" path="res://scripts/game_object/Boss/dad_the_boss.gd" id="1_axth1"]
+[ext_resource type="Script" uid="uid://d3l1sfjy03scq" path="res://scripts/components/health_component.gd" id="1_b1xhl"]
+[ext_resource type="Script" uid="uid://r6ixgurljk6l" path="res://scripts/State Machine/state_machine.gd" id="3_0s4t6"]
+[ext_resource type="Script" uid="uid://j7strodixvi1" path="res://scripts/components/hurtbox_component.gd" id="3_axth1"]
+[ext_resource type="Script" uid="uid://dn5j0px60l37b" path="res://scripts/game_object/Boss/Boss States/IdleState.gd" id="4_2gvlx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b1xhl"]
+radius = 69.0
+height = 312.0
+
+[node name="Dad The Boss" type="CharacterBody2D" groups=["TheBoss"]]
+script = ExtResource("1_axth1")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("1_b1xhl")
+max_health = 50.0
+metadata/_custom_type_script = "uid://d3l1sfjy03scq"
+
+[node name="State machine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+script = ExtResource("3_0s4t6")
+initialState = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="State machine"]
+script = ExtResource("4_2gvlx")
+metadata/_custom_type_script = "uid://dn5j0px60l37b"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_b1xhl")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Icon" type="Sprite2D" parent="Visuals"]
+position = Vector2(-1, 1)
+scale = Vector2(1, 2.4375)
+texture = ExtResource("1_63d0v")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+script = ExtResource("3_axth1")
+metadata/_custom_type_script = "uid://j7strodixvi1"
+
+[node name="hitBox" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CapsuleShape2D_b1xhl")
+debug_color = Color(0.997165, 0, 0.17189, 0.42)
