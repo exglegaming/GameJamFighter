@@ -3,6 +3,7 @@ extends CanvasLayer
 var options_scene: PackedScene = preload("res://scenes/ui/options_menu.tscn")
 
 func _ready() -> void:
+	MusicPlayer.on_menu_open()
 	%PlayButton.pressed.connect(on_play_pressed)
 	%OptionsButton.pressed.connect(on_options_pressed)
 	%QuitButton.pressed.connect(on_quit_pressed)
@@ -10,6 +11,7 @@ func _ready() -> void:
 
 func on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	MusicPlayer.on_game_start()
 
 
 func on_options_pressed() -> void:
