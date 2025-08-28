@@ -4,7 +4,7 @@ extends CanvasLayer
 
 
 func _ready() -> void:
-	MusicPlayer.on_level_finsihed()
+	MusicPlayer.on_level_finished()
 	panel_container.pivot_offset = panel_container.size / 2
 	var tween := create_tween()
 	tween.tween_property(panel_container, "scale", Vector2.ZERO, 0)
