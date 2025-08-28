@@ -1,6 +1,4 @@
-extends bossState
-class_name IdleState
-
+class_name IdleState extends bossState
 
 
 func Enter()-> void :
