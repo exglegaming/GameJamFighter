@@ -47,17 +47,20 @@ func _process(delta: float) -> void:
 			var fallVelocity = get_gravity() * delta * fallGravityMultiplier
 			Gravity = fallVelocity
 		velocity += Gravity
-		
 
-	if Input.is_action_just_pressed(GameConstants.JUMP):
-		if CoyoteTimer > 0:
+
+	if !is_attacking:
+		if Input.is_action_just_pressed(GameConstants.JUMP):
+			if CoyoteTimer > 0:
+				velocity.y = jump_velocity
+				CoyoteTimer = 0
+			else :
+				BufferTimer = jumpBufferTime
+		if is_on_floor() and BufferTimer > 0:
 			velocity.y = jump_velocity
-			CoyoteTimer = 0
-		else :
-			BufferTimer = jumpBufferTime
-	if is_on_floor() and BufferTimer > 0:
-		velocity.y = jump_velocity
-		BufferTimer = 0
+			BufferTimer = 0
+
+
 	if Input.is_action_just_released(GameConstants.JUMP) and !is_on_floor() and velocity.y <= minimalJumpVelocity:
 		velocity.y = minimalJumpVelocity
 
@@ -152,7 +155,9 @@ func dash_attack():
 		hitbox_collision.disabled = false
 		velocity.x = sign(visuals.scale.x) * 800
 #endregion
-
+# returns the current health of player
+func get_current_health() -> int:
+	return int(health_component.current_health)
 	
 func on_animation_finished() -> void:
 	if anim_sprite.animation == GameConstants.SLASH:
@@ -163,7 +168,7 @@ func on_animation_finished() -> void:
 func check_deal_damage() -> void:
 	if number_colliding_bodies == 0 || !damage_interval_timer.is_stopped():
 		return
-	health_component.damage(5)
+	health_component.damage(1)
 	damage_interval_timer.start()
 
 
