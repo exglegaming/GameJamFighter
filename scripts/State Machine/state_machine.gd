@@ -1,10 +1,10 @@
 extends Node
 
-
-
 @export var initialState:State
+
 var currentState : State
 var States:Dictionary = {}
+
 
 func _ready() -> void:
 	for Child in get_children():

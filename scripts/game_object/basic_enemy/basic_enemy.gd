@@ -126,4 +126,4 @@ func update_visuals() -> void:
 
 
 func on_enemy_died() -> void:
-	MusicPlayer.play_track("outside_combat")
+	MusicPlayer.crossfade_to("outside_combat")
