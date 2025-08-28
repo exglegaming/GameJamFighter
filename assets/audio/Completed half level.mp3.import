@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dnq44cm0vdmax"
+path="res://.godot/imported/Completed half level.mp3-b69e8bd87b824946fb93c846b6f3acec.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Completed half level.mp3"
+dest_files=["res://.godot/imported/Completed half level.mp3-b69e8bd87b824946fb93c846b6f3acec.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
