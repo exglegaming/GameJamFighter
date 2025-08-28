@@ -25,6 +25,7 @@ func update_ui(player: Node2D) -> void:
 			ammo_container.hide()
 			pass
 			
+			
 func update_ammo_ui(ammo_count:int) -> void:
 	for i in ammo_ui.size():
 		if ammo_count > i:

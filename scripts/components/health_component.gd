@@ -8,6 +8,7 @@ signal health_decreased
 
 var current_health: float
 
+
 func _ready() -> void:
     current_health = max_health
 
