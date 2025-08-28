@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 @export_category("Detection")
 @export var detection_range: float = 150
+@export var giving_up_range: float = 350
 
 enum state {
 	PATROL,
@@ -21,6 +22,7 @@ var player: CharacterBody2D = null
 
 @onready var patrol_start_position: Vector2 = global_position
 @onready var visuals: Node2D = $Visuals
+@onready var health_component: HealthComponent = $HealthComponent
 
 
 func _ready() -> void:
@@ -29,6 +31,8 @@ func _ready() -> void:
 	var players := get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		player = players[0]
+
+	health_component.died.connect(on_enemy_died)
 
 
 func _process(delta: float) -> void:
@@ -56,14 +60,6 @@ func check_player_detection() -> void:
 	var distance_to_player: float = global_position.distance_to(player.global_position)
 
 	if distance_to_player <= detection_range:
-<<<<<<< Updated upstream
-		if current_state == State.PATROL:
-			current_state = State.CHASE
-			print("Player detected - chasing!")
-	else:
-		if current_state == State.CHASE:
-			current_state = State.PATROL
-=======
 		if current_state == state.PATROL:
 			current_state = state.CHASE
 			MusicPlayer.on_battle()
@@ -72,7 +68,6 @@ func check_player_detection() -> void:
 		if current_state == state.CHASE && distance_to_player >= giving_up_range:
 			current_state = state.PATROL
 			MusicPlayer.on_outside_combat()
->>>>>>> Stashed changes
 
 			reset_patrol_direction()
 			print("Player lost - returning to patrol")
@@ -128,3 +123,7 @@ func update_visuals() -> void:
 		visuals.scale.x = 1
 	else:
 		visuals.scale.x = -1
+
+
+func on_enemy_died() -> void:
+	MusicPlayer.play_track("outside_combat")

@@ -16,3 +16,6 @@ func acquire_target() -> void:
 		var player: Node2D = player_nodes[0]
 		target_position = player.global_position
 		ui.update_ui(player)
+	else:
+		ui.update_ui(null)
+		

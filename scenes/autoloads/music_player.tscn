@@ -1,12 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bp05fwqsgtgv6"]
+[gd_scene load_steps=2 format=3 uid="uid://bp05fwqsgtgv6"]
 
-[ext_resource type="AudioStream" uid="uid://cxjeskxo0tch5" path="res://assets/audio/Hear+What+They+Say.mp3" id="1_tnfjj"]
 [ext_resource type="Script" uid="uid://y1750m4n0f18" path="res://scripts/autoloads/music_player.gd" id="2_tnfjj"]
 
 [node name="MusicPlayer" type="AudioStreamPlayer"]
-stream = ExtResource("1_tnfjj")
-volume_db = -5.0
-autoplay = true
 bus = &"music"
 script = ExtResource("2_tnfjj")
 

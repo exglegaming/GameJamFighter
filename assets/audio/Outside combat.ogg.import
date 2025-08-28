@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bnn2kja23wg4m"
+path="res://.godot/imported/Outside combat.ogg-012d7fd02c98ca62be2b2a871d18d0ce.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/Outside combat.ogg"
+dest_files=["res://.godot/imported/Outside combat.ogg-012d7fd02c98ca62be2b2a871d18d0ce.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
