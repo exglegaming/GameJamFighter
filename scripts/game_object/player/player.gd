@@ -152,7 +152,9 @@ func dash_attack():
 		hitbox_collision.disabled = false
 		velocity.x = sign(visuals.scale.x) * 800
 #endregion
-
+# returns the current health of player
+func get_current_health() -> int:
+	return int(health_component.current_health)
 	
 func on_animation_finished() -> void:
 	if anim_sprite.animation == GameConstants.SLASH:
@@ -163,7 +165,7 @@ func on_animation_finished() -> void:
 func check_deal_damage() -> void:
 	if number_colliding_bodies == 0 || !damage_interval_timer.is_stopped():
 		return
-	health_component.damage(5)
+	health_component.damage(1)
 	damage_interval_timer.start()
 
 
