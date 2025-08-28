@@ -79,7 +79,6 @@ func reset_patrol_direction() -> void:
 		patrol_direction = original_patrol_direction
 
 
-
 func patrol_behavior() -> void:
 	if patrol_direction == 0:
 		patrol_direction = 1
