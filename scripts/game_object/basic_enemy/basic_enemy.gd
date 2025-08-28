@@ -58,10 +58,12 @@ func check_player_detection() -> void:
 	if distance_to_player <= detection_range:
 		if current_state == State.PATROL:
 			current_state = State.CHASE
+			MusicPlayer.on_battle()
 			print("Player detected - chasing!")
 	else:
 		if current_state == State.CHASE:
 			current_state = State.PATROL
+			MusicPlayer.on_outside_combat()
 
 			reset_patrol_direction()
 			print("Player lost - returning to patrol")
@@ -96,6 +98,8 @@ func chase_behavior() -> void:
 	if not player:
 		current_state = State.PATROL
 		return
+	
+	# MusicPlayer.on_battle()
 	
 	var direction_to_player = sign(player.global_position.x - global_position.x)
 
