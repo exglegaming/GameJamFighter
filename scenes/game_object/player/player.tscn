@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bi7s2f0me84a5"]
+[gd_scene load_steps=39 format=3 uid="uid://bi7s2f0me84a5"]
 
 [ext_resource type="Script" uid="uid://bh0e0bqbp68v1" path="res://scripts/game_object/player/player.gd" id="1_8afob"]
 [ext_resource type="PackedScene" uid="uid://joty65jaxm6k" path="res://scenes/components/health_component.tscn" id="2_6b2fh"]
@@ -12,6 +12,30 @@ radius = 15.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tj6oj"]
 size = Vector2(27, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5e2pj"]
+atlas = ExtResource("3_s3670")
+region = Rect2(278, 308, 66, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_635us"]
+atlas = ExtResource("3_s3670")
+region = Rect2(344, 308, 66, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bo76"]
+atlas = ExtResource("3_s3670")
+region = Rect2(212, 308, 66, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5ds6"]
+atlas = ExtResource("3_s3670")
+region = Rect2(0, 308, 69, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6mdf"]
+atlas = ExtResource("3_s3670")
+region = Rect2(69, 308, 69, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_114c3"]
+atlas = ExtResource("3_s3670")
+region = Rect2(138, 308, 69, 44)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ss5pk"]
 atlas = ExtResource("3_s3670")
@@ -103,6 +127,34 @@ region = Rect2(69, 88, 69, 44)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_28lpv"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5e2pj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_635us")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2bo76")
+}],
+"loop": false,
+"name": &"Jump Downward",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5ds6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6mdf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_114c3")
+}],
+"loop": false,
+"name": &"Jump Upward",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ss5pk")

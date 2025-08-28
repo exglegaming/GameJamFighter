@@ -13,6 +13,8 @@ const SWITCH_ATTACK: String = "switch_attack"
 const WALK: StringName = "walk"
 const IDLE: StringName = "idle"
 const SLASH: StringName = "slash"
+const JUMPING:StringName = "Jump Upward"
+const FALLING:StringName = "Jump Downward"
 
 # Keys
 const PAUSE: StringName = "pause"

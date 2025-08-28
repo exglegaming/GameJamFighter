@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export_category("Movement")
 @export var speed: float = 300.0
 @export var jump_velocity: float = -400.0
+@export var minimalJumpVelocity:float = -100
+@export var fallGravityMultiplier:float = 2
 @export var acceleration: float = 1500
 @export var friction: float = 1200
 
@@ -32,10 +34,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		var Gravity = get_gravity() * delta
+		if velocity.y >= 0 :
+			var fallVelocity = get_gravity() * delta * fallGravityMultiplier
+			Gravity = fallVelocity
+		velocity += Gravity
+		
 
 	if Input.is_action_just_pressed(GameConstants.JUMP) and is_on_floor():
 		velocity.y = jump_velocity
+	if Input.is_action_just_released(GameConstants.JUMP) and !is_on_floor() and velocity.y <= minimalJumpVelocity:
+		velocity.y = minimalJumpVelocity
 
 	if Input.is_action_just_pressed(GameConstants.ATTACK) and not is_attacking:
 		is_attacking = true
@@ -72,11 +81,16 @@ func update_animations(direction: float) -> void:
 		visuals.scale.x = -1
 		hitbox_component.scale.x = -1
 
-	if abs(velocity.x) > 5:
-		anim_sprite.play(GameConstants.WALK)
-	else:
-		anim_sprite.play(GameConstants.IDLE)
-
+	if !is_on_floor():
+		if velocity.y <= 0 :
+			anim_sprite.play(GameConstants.JUMPING)
+		elif velocity.y > 0 :
+			anim_sprite.play(GameConstants.FALLING)
+	else :
+		if abs(velocity.x) > 5 :
+			anim_sprite.play(GameConstants.WALK)
+		else:
+			anim_sprite.play(GameConstants.IDLE)
 
 func attack() -> void:
 	print("attack")
