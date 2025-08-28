@@ -21,6 +21,7 @@ var player: CharacterBody2D = null
 
 @onready var patrol_start_position: Vector2 = global_position
 @onready var visuals: Node2D = $Visuals
+@onready var health_component: HealthComponent = $HealthComponent
 
 
 func _ready() -> void:
@@ -29,6 +30,8 @@ func _ready() -> void:
 	var players := get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		player = players[0]
+
+	health_component.died.connect(on_enemy_died)
 
 
 func _process(delta: float) -> void:
@@ -99,8 +102,6 @@ func chase_behavior() -> void:
 		current_state = State.PATROL
 		return
 	
-	# MusicPlayer.on_battle()
-	
 	var direction_to_player = sign(player.global_position.x - global_position.x)
 
 	if direction_to_player != 0:
@@ -121,3 +122,7 @@ func update_visuals() -> void:
 		visuals.scale.x = 1
 	else:
 		visuals.scale.x = -1
+
+
+func on_enemy_died() -> void:
+	MusicPlayer.play_track("outside_combat")

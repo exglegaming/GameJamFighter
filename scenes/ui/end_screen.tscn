@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bumbtn1h1kxgx" path="res://scenes/ui/sound_button.tscn" id="1_4ttpn"]
 [ext_resource type="Theme" uid="uid://d30hkm1tbj1k" path="res://resources/theme.tres" id="1_n8r4t"]
-[ext_resource type="Script" uid="uid://dvgks3hrf36gx" path="res://scripts/ui/end_screen.gd" id="1_wgyui"]
+[ext_resource type="Script" path="res://scripts/ui/end_screen.gd" id="1_wgyui"]
 
 [node name="EndScreen" type="CanvasLayer"]
 process_mode = 3
