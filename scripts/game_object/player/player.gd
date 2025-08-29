@@ -32,8 +32,8 @@ var weapon: int = 0
 
 
 func _ready() -> void:
-	$CollisionArea2D.body_entered.connect(on_body_entered)
-	$CollisionArea2D.body_exited.connect(on_body_exited)
+	$HurtBox.body_entered.connect(on_body_entered)
+	$HurtBox.body_exited.connect(on_body_exited)
 	anim_sprite.animation_finished.connect(on_animation_finished)
 	damage_interval_timer.timeout.connect(damageIntervalEnded)
 
@@ -42,15 +42,18 @@ func _process(delta: float) -> void:
 	if is_on_floor():
 		CoyoteTimer = coyoteTime
 	else:
+<<<<<<< Updated upstream
 		var Gravity = get_gravity() * delta
+=======
+		didHitGround = false
+		var Gravity:float = get_gravity().y * delta
+>>>>>>> Stashed changes
 		CoyoteTimer -= delta
 		BufferTimer -= delta
 		if velocity.y >= 0 :
-			var fallVelocity = get_gravity() * delta * fallGravityMultiplier
+			var fallVelocity = get_gravity().y * delta * fallGravityMultiplier
 			Gravity = fallVelocity
-		velocity += Gravity
-
-
+		velocity.y += Gravity
 	if !is_attacking:
 		if Input.is_action_just_pressed(GameConstants.JUMP):
 			if CoyoteTimer > 0:

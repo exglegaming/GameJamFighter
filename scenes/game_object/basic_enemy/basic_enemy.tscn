@@ -15,7 +15,6 @@ size = Vector2(32, 32)
 
 [node name="BasicEnemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 8
-collision_mask = 9
 script = ExtResource("1_pcrk2")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_1qlws")]

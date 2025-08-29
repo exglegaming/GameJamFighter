@@ -1,5 +1,10 @@
 extends Node
+<<<<<<< Updated upstream
 
+=======
+class_name StateMachine
+@export var initialState:State
+>>>>>>> Stashed changes
 
 
 @export var initialState:State
@@ -18,10 +23,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if currentState:
-		currentState.Update()
+		currentState.Update(delta)
 func _physics_process(delta: float) -> void:
 	if currentState:
-		currentState.physicsUpdate()
+		currentState.physicsUpdate(delta)
 		
 
 
