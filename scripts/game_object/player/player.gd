@@ -47,14 +47,8 @@ func _process(delta: float) -> void:
 
 		CoyoteTimer = coyoteTime
 	else:
-
-
 		didHitGround = false
-
-		var Gravity = get_gravity() * delta
-
-		didHitGround = false
-		var Gravity:float = get_gravity().y * delta
+		var Gravity: float = get_gravity().y * delta
 
 		CoyoteTimer -= delta
 		BufferTimer -= delta

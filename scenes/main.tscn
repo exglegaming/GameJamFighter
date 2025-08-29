@@ -7,9 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bi7s2f0me84a5" path="res://scenes/game_object/player/player.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bq4cxljvs0wud" path="res://scenes/game_object/basic_enemy/basic_enemy.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://d1kvav2bbo8bh" path="res://scenes/game_object/collectibles/cookies.tscn" id="5_tbgi4"]
-
-[ext_resource type="PackedScene" uid="uid://p7uqaqtn561w" path="res://scenes/game_object/Boss/dad_the_boss.tscn" id="7_tipki"]
-
+[ext_resource type="Texture2D" uid="uid://dlvv30uyvfvgt" path="res://assets/sprites/Environment/Ground sprite.png" id="5_tipki"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
 size = Vector2(128, 128)
@@ -66,9 +64,6 @@ projectile_container = NodePath("../../ProjectileContainer")
 
 [node name="BasicEnemy" parent="Entities" instance=ExtResource("4_jyhfs")]
 position = Vector2(1478, 336)
-
-[node name="Dad The Boss" parent="Entities" instance=ExtResource("7_tipki")]
-position = Vector2(554, 175)
 
 [node name="Cookies" parent="." instance=ExtResource("5_tbgi4")]
 

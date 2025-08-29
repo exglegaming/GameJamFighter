@@ -8,9 +8,6 @@ class_name TheBoss
 @export var jumpVelocity:int = -500
 @export var gravity:float = 5
 
-<<<<<<< Updated upstream
-func _physics_process(delta: float) -> void:
-=======
 @export var detectionRange:int = 150
 
 @onready var visuals: Node2D = $Visuals
@@ -20,18 +17,14 @@ func _physics_process(delta: float) -> void:
 
 
 var Attacks:Dictionary = {}
->>>>>>> Stashed changes
 
 func _ready() -> void:
 	for Child in $Attacks.get_children():
 		if Child is Attack:
 			Attacks[Child.name.to_lower()] = Child
 
-@onready var player: CharacterBody2D = get_tree().get_first_node_in_group('player')
-
 
 func _physics_process(delta: float) -> void:
-	
 	move_and_slide()
 	updateVisuals()
 
