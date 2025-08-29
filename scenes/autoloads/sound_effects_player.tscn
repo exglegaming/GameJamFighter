@@ -1,6 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://c8yay001w2v3"]
 
-[ext_resource type="Script" path="res://scripts/autoloads/sound_effects_player.gd" id="1_script"]
+
+[ext_resource type="Script" uid="uid://d0qvdvsec66ab" path="res://scripts/autoloads/sound_effects_player.gd" id="1_script"]
+
 
 [node name="SoundEffectsPlayer" type="AudioStreamPlayer"]
 bus = &"sfx"

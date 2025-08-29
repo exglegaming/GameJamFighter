@@ -7,9 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bi7s2f0me84a5" path="res://scenes/game_object/player/player.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bq4cxljvs0wud" path="res://scenes/game_object/basic_enemy/basic_enemy.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://d1kvav2bbo8bh" path="res://scenes/game_object/collectibles/cookies.tscn" id="5_tbgi4"]
-
 [ext_resource type="PackedScene" uid="uid://p7uqaqtn561w" path="res://scenes/game_object/Boss/dad_the_boss.tscn" id="7_tipki"]
-
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
 size = Vector2(128, 128)
@@ -32,30 +30,6 @@ texture = ExtResource("1_0wfyh")
 position = Vector2(320, 348)
 scale = Vector2(35.92, 0.1875)
 shape = SubResource("RectangleShape2D_jyhfs")
-
-[node name="GroundSprite" type="Sprite2D" parent="FloorStaticBody2D"]
-z_index = 1
-position = Vector2(70, 351)
-scale = Vector2(3.0625, 2.09375)
-texture = ExtResource("5_tipki")
-
-[node name="GroundSprite2" type="Sprite2D" parent="FloorStaticBody2D"]
-z_index = 1
-position = Vector2(137, 351)
-scale = Vector2(3.0625, 2.09375)
-texture = ExtResource("5_tipki")
-
-[node name="GroundSprite3" type="Sprite2D" parent="FloorStaticBody2D"]
-z_index = 1
-position = Vector2(198, 350.5)
-scale = Vector2(3.0625, 2.09375)
-texture = ExtResource("5_tipki")
-
-[node name="GroundSprite4" type="Sprite2D" parent="FloorStaticBody2D"]
-z_index = 1
-position = Vector2(265, 350.5)
-scale = Vector2(3.0625, 2.09375)
-texture = ExtResource("5_tipki")
 
 [node name="Entities" type="Node2D" parent="." groups=["entities_layer"]]
 
