@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dgompolsicp4v"
+path="res://.godot/imported/Sword hit.mp3-5a43f701d5b776e1d30bd4fcb03eeb63.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Sound effects/Sword hit.mp3"
+dest_files=["res://.godot/imported/Sword hit.mp3-5a43f701d5b776e1d30bd4fcb03eeb63.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

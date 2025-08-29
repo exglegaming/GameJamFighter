@@ -6,7 +6,8 @@ extends AudioStreamPlayer
 	"battle": preload("res://assets/audio/Battle theme.ogg"),
 	"outside_combat": preload("res://assets/audio/Outside combat.ogg"),
 	"level_halfway": preload("res://assets/audio/Completed half level.mp3"),
-	"level_finished": preload("res://assets/audio/Finished the level.mp3")
+	"level_finished": preload("res://assets/audio/Finished the level.mp3"),
+	"ambient": preload("res://assets/audio/Ambient.ogg")
 }
 
 var current_track_name: String = ""
@@ -37,6 +38,12 @@ func play_track(track_name: String, loop: bool = true, delay_loop: bool = true) 
 	
 	volume_db = default_volume
 	stream = tracks[track_name]
+	# Ensure outside_combat loops
+	if track_name == "outside_combat":
+		if stream is AudioStreamOggVorbis:
+			stream.loop = true
+		elif stream is AudioStreamMP3:
+			stream.loop = true
 	play()
 
 
@@ -62,7 +69,7 @@ func on_timer_timeout() -> void:
 
 #region chaning music track dependent on event
 func on_game_start() -> void:
-	crossfade_to("intro")
+	crossfade_to("ambient")
 
 
 func on_battle() -> void:
@@ -76,7 +83,7 @@ func on_menu_open() -> void:
 
 
 func on_outside_combat() -> void:
-	crossfade_to("outside_combat", 2)
+	crossfade_to("outside_combat", 2, true, false)
 
 
 func on_level_halfway() -> void:
@@ -97,7 +104,7 @@ func fade_in_track(track_name: String, duration: float = 1.0) -> void:
 	tween.tween_property(self, "volume_db", default_volume, duration)
 
 
-func crossfade_to(track_name: String, duration: float = 1.0) -> void:
+func crossfade_to(track_name: String, duration: float = 1.0, loop: bool = true, delay_loop: bool = true) -> void:
 	if not playing:
 		fade_in_track(track_name, duration)
 		return
@@ -108,6 +115,6 @@ func crossfade_to(track_name: String, duration: float = 1.0) -> void:
 	await tween.finished
 	
 	# Start new track and fade in
-	play_track(track_name)
+	play_track(track_name, loop, delay_loop)
 	tween = create_tween()
 	tween.tween_property(self, "volume_db", default_volume, duration * 0.5)

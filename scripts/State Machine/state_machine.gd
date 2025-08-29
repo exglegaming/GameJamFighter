@@ -1,15 +1,16 @@
 extends Node
-<<<<<<< Updated upstream
 
-=======
 class_name StateMachine
 @export var initialState:State
->>>>>>> Stashed changes
+
+
 
 
 @export var initialState:State
+
 var currentState : State
 var States:Dictionary = {}
+
 
 func _ready() -> void:
 	for Child in get_children():

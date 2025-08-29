@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ctlcfp1wg6sf7"
+path="res://.godot/imported/JumpEnd.mp3-1f13d879881f1c987a60a0c31e457b43.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Sound effects/JumpEnd.mp3"
+dest_files=["res://.godot/imported/JumpEnd.mp3-1f13d879881f1c987a60a0c31e457b43.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

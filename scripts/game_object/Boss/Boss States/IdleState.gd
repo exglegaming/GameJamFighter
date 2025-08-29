@@ -1,10 +1,13 @@
+
 extends bossState
-<<<<<<< Updated upstream
+
 class_name IdleState
 
-=======
+
 class_name IdleState 
->>>>>>> Stashed changes
+
+class_name IdleState extends bossState
+
 
 var idleTime:float
 @onready var animation = parent.get_node("Visuals/Sprites")
