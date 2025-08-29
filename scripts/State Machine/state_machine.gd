@@ -1,5 +1,11 @@
 extends Node
 
+class_name StateMachine
+@export var initialState:State
+
+
+
+
 @export var initialState:State
 
 var currentState : State
@@ -18,10 +24,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if currentState:
-		currentState.Update()
+		currentState.Update(delta)
 func _physics_process(delta: float) -> void:
 	if currentState:
-		currentState.physicsUpdate()
+		currentState.physicsUpdate(delta)
 		
 
 

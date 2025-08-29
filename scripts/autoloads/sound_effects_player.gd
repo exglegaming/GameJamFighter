@@ -15,6 +15,9 @@ func _ready() -> void:
 
 
 func play_sound(sound_name: String, volume_override: float = -1.0) -> void:
+
+	pitch_scale = randf_range(0.8,1.2)
+
 	if sound_name not in sound_effects:
 		print("Sound effect not found: ", sound_name)
 		return

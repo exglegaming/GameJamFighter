@@ -240,7 +240,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_8afob"]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 0
+collision_layer = 2
 script = ExtResource("1_8afob")
 projectile = ExtResource("2_pknkg")
 
@@ -252,12 +252,11 @@ one_shot = true
 
 [node name="CollectionComponent" parent="." instance=ExtResource("3_tj6oj")]
 
-[node name="CollisionArea2D" type="Area2D" parent="."]
-visible = false
+[node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_6b2fh")
 
