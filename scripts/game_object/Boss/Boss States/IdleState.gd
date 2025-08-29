@@ -1,13 +1,4 @@
-
-extends bossState
-
-class_name IdleState
-
-
-class_name IdleState 
-
 class_name IdleState extends bossState
-
 
 var idleTime:float
 @onready var animation = parent.get_node("Visuals/Sprites")

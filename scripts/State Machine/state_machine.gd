@@ -1,12 +1,6 @@
-extends Node
+class_name StateMachine extends Node
 
-class_name StateMachine
-@export var initialState:State
-
-
-
-
-@export var initialState:State
+@export var initialState: State
 
 var currentState : State
 var States:Dictionary = {}
@@ -34,7 +28,7 @@ func _physics_process(delta: float) -> void:
 func stateTransitioned(state:State,new_state_name:StringName) ->void:
 	if state != currentState:
 		return
-	var new_state:State = States.get(new_state_name.to_lower())
+	var new_state: State = States.get(new_state_name.to_lower())
 	
 	if !new_state:
 		return
