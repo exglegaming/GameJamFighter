@@ -1,26 +1,60 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgvuk04fylim5"]
+[gd_scene load_steps=9 format=3 uid="uid://cgvuk04fylim5"]
 
+[ext_resource type="Script" uid="uid://cmgv4tdytwr1i" path="res://scripts/game_object/player/throw_projectile.gd" id="1_7ywhb"]
 [ext_resource type="Texture2D" uid="uid://bb108dl2msr1r" path="res://icon.svg" id="1_mev7v"]
 [ext_resource type="PackedScene" uid="uid://6b8sexvsc1lq" path="res://scenes/components/hitbox_component.tscn" id="2_4puyq"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mev7v"]
-radius = 5.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4puyq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ywhb"]
 
+[sub_resource type="Curve" id="Curve_4puyq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7ywhb"]
+curve = SubResource("Curve_4puyq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m6ta1"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 30.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.08
+scale_max = 0.08
+alpha_curve = SubResource("CurveTexture_7ywhb")
+
 [node name="ThrowProjectile" type="RigidBody2D"]
 collision_layer = 0
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_7ywhb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_mev7v")
+shape = SubResource("RectangleShape2D_4puyq")
 debug_color = Color(1.20327e-07, 0.28154, 0.33292, 0.42)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="HitboxComponent" parent="." instance=ExtResource("2_4puyq")]
+
+[node name="Sprite2D" type="Sprite2D" parent="HitboxComponent"]
 modulate = Color(0, 0, 0.52549, 1)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_mev7v")
 
-[node name="HitboxComponent" parent="." instance=ExtResource("2_4puyq")]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_7ywhb")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 5
+texture = ExtResource("1_mev7v")
+lifetime = 2.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_m6ta1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]

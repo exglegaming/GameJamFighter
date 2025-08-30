@@ -10,11 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://dlvv30uyvfvgt" path="res://assets/sprites/Environment/Ground sprite.png" id="5_tipki"]
 [ext_resource type="PackedScene" uid="uid://p7uqaqtn561w" path="res://scenes/game_object/Boss/dad_the_boss.tscn" id="8_85g3d"]
 
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tipki"]
 texture = ExtResource("5_tipki")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -11.5, 16, -12, 16, 16, -16, 16)
+
 10:0/0 = 0
 11:0/0 = 0
 12:0/0 = 0
@@ -30,6 +32,7 @@ texture_region_size = Vector2i(32, 32)
 22:0/0 = 0
 23:0/0 = 0
 24:0/0 = 0
+
 
 [sub_resource type="TileSet" id="TileSet_85g3d"]
 tile_size = Vector2i(32, 32)
@@ -56,6 +59,7 @@ process_mode = 4
 visible = false
 position = Vector2(-1, 8)
 collision_mask = 255
+
 
 [node name="Sprite2D" type="Sprite2D" parent="FloorStaticBody2D"]
 position = Vector2(320, 348)
@@ -104,6 +108,7 @@ projectile_container = NodePath("../../ProjectileContainer")
 
 [node name="BasicEnemy" parent="Entities" instance=ExtResource("4_jyhfs")]
 position = Vector2(1478, 336)
+
 
 [node name="Dad The Boss" parent="Entities" instance=ExtResource("8_85g3d")]
 

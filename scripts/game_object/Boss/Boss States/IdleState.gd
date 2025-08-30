@@ -1,6 +1,5 @@
 extends bossState
 
-
 class_name IdleState
 
 

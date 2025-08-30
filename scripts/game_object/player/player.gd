@@ -54,10 +54,10 @@ func _process(delta: float) -> void:
 		CoyoteTimer = coyoteTime
 	else:
 
+		didHitGround = false
 
 		didHitGround = false
-		didHitGround = false
-		var Gravity:float = get_gravity().y * delta
+		var Gravity: float = get_gravity().y * delta
 
 		CoyoteTimer -= delta
 		BufferTimer -= delta
@@ -158,7 +158,7 @@ func throwing_attack():
 	if weapon_ammo[1] > 0:
 		weapon_ammo[1] -= 1
 		var bullet:RigidBody2D = projectile.instantiate()
-		bullet.position = Vector2(position.x, position.y-1)
+		bullet.position = Vector2(position.x, position.y-10)
 		projectile_container.add_child(bullet)
 		# make the bullet do damage
 		var bullet_hitbox:HitboxComponent = bullet.get_node_or_null("HitboxComponent")

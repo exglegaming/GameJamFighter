@@ -6,12 +6,6 @@ signal Transitioned
 func Enter() ->void:
 	pass
 
-
-
-
-
-
-
 func Update(delta:float) ->void:
 	pass
 
