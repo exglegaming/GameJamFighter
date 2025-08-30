@@ -27,7 +27,7 @@ var player: CharacterBody2D = null
 
 func _ready() -> void:
 	original_patrol_direction = patrol_direction
-
+	$HitboxComponent.area_entered.connect(on_area_entered)
 	var players := get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		player = players[0]
@@ -124,6 +124,10 @@ func update_visuals() -> void:
 	else:
 		visuals.scale.x = -1
 
+func on_area_entered(area:Area2D) -> void :
+	if area.get_parent() is Player :
+		area.get_parent().number_colliding_bodies += 1
+		area.get_parent().check_deal_damage()
 
 func on_enemy_died() -> void:
 	MusicPlayer.crossfade_to("outside_combat")

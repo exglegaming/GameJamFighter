@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bi7s2f0me84a5"]
+[gd_scene load_steps=43 format=3 uid="uid://bi7s2f0me84a5"]
 
 [ext_resource type="Script" uid="uid://bh0e0bqbp68v1" path="res://scripts/game_object/player/player.gd" id="1_8afob"]
 [ext_resource type="PackedScene" uid="uid://joty65jaxm6k" path="res://scenes/components/health_component.tscn" id="2_6b2fh"]
@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://doxkdxojibpvp" path="res://scenes/components/collection_component.tscn" id="3_tj6oj"]
 [ext_resource type="PackedScene" uid="uid://6b8sexvsc1lq" path="res://scenes/components/hitbox_component.tscn" id="4_tj6oj"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6b2fh"]
-radius = 15.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pknkg"]
+radius = 9.0
+height = 26.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tj6oj"]
 size = Vector2(27, 17)
@@ -36,6 +37,22 @@ region = Rect2(69, 308, 69, 44)
 [sub_resource type="AtlasTexture" id="AtlasTexture_114c3"]
 atlas = ExtResource("3_s3670")
 region = Rect2(138, 308, 69, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4y7p7"]
+atlas = ExtResource("3_s3670")
+region = Rect2(69, 264, 69, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ne7lk"]
+atlas = ExtResource("3_s3670")
+region = Rect2(138, 264, 69, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ioik"]
+atlas = ExtResource("3_s3670")
+region = Rect2(207, 264, 69, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dholm"]
+atlas = ExtResource("3_s3670")
+region = Rect2(276, 264, 69, 44)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ss5pk"]
 atlas = ExtResource("3_s3670")
@@ -157,6 +174,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_4y7p7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ne7lk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ioik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dholm")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ss5pk")
 }, {
 "duration": 1.0,
@@ -253,12 +287,12 @@ one_shot = true
 [node name="CollectionComponent" parent="." instance=ExtResource("3_tj6oj")]
 
 [node name="HurtBox" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, -15)
-shape = SubResource("CircleShape2D_6b2fh")
+position = Vector2(1, -16)
+shape = SubResource("CapsuleShape2D_pknkg")
 
 [node name="HitboxComponent" parent="." groups=["player"] instance=ExtResource("4_tj6oj")]
 position = Vector2(6, 3)
@@ -275,9 +309,9 @@ position = Vector2(0, -21)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_28lpv")
-animation = &"slash"
+animation = &"Jump Downward"
 autoplay = "idle"
-frame = 7
+frame = 2
 frame_progress = 1.0
 offset = Vector2(6, -1)
 

@@ -1,6 +1,8 @@
 extends State
 class_name bossState
 
+
+
 @onready var parent:TheBoss = get_tree().get_first_node_in_group("TheBoss")
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group('player')
 @onready var gravity:float = parent.gravity

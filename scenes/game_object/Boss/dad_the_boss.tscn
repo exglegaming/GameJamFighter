@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://p7uqaqtn561w"]
+[gd_scene load_steps=82 format=3 uid="uid://p7uqaqtn561w"]
 
 [ext_resource type="Script" uid="uid://b5q3236u4as24" path="res://scripts/game_object/Boss/dad_the_boss.gd" id="1_axth1"]
 [ext_resource type="Script" uid="uid://d3l1sfjy03scq" path="res://scripts/components/health_component.gd" id="1_b1xhl"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dfrde16vnh4p6" path="res://assets/Boss placholder/Punch_2.png" id="12_swp0j"]
 [ext_resource type="Texture2D" uid="uid://bim0scjjvn0ea" path="res://assets/Boss placholder/Enchanced_impact_2.png" id="14_swp0j"]
 [ext_resource type="Script" uid="uid://m0ivgmhumvbc" path="res://scripts/game_object/Boss/Attacks/AttackClass.gd" id="15_8gd3u"]
+[ext_resource type="Script" uid="uid://citgxan6wdaeq" path="res://scripts/game_object/Boss/Attacks/AttHandler.gd" id="16_gr36o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ec1ot"]
 radius = 5.0
@@ -469,10 +470,20 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8gd3u"]
 radius = 5.08381
-height = 18.0
+height = 15.9789
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n6mpj"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gr36o"]
+radius = 6.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gr36o"]
+radius = 4.09509
+height = 15.6728
 
 [node name="Dad The Boss" type="CharacterBody2D" groups=["TheBoss"]]
-collision_layer = 12
+collision_layer = 4
 script = ExtResource("1_axth1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -521,14 +532,16 @@ debug_color = Color(0.997165, 0, 0.17189, 0.42)
 [node name="Sprites" type="AnimatedSprite2D" parent="Visuals"]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_sd1s8")
-animation = &"kick"
-frame = 3
+animation = &"upercut"
+frame = 7
+frame_progress = 1.0
 offset = Vector2(5, -64)
 
 [node name="Attacks" type="Node2D" parent="."]
+script = ExtResource("16_gr36o")
 
 [node name="kick" type="Area2D" parent="Attacks"]
-position = Vector2(19, -23)
+position = Vector2(15, -20)
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("15_8gd3u")
@@ -536,10 +549,47 @@ damage = 2.0
 StartupTime = 0.3
 ActiveTime = 0.3
 range = 25.0
+stunnTime = 0.8
 metadata/_custom_type_script = "uid://m0ivgmhumvbc"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/kick"]
-position = Vector2(-4, 2)
 rotation = -1.84543
 shape = SubResource("CapsuleShape2D_8gd3u")
 debug_color = Color(0.550321, 0.535981, 0.488524, 0.42)
+
+[node name="punch1" type="Area2D" parent="Attacks"]
+position = Vector2(13, -24)
+script = ExtResource("15_8gd3u")
+damage = 1.0
+StartupTime = 0.2
+ActiveTime = 0.3
+range = 20.0
+waitTime = 1.0
+metadata/_custom_type_script = "uid://m0ivgmhumvbc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/punch1"]
+position = Vector2(2, -1)
+shape = SubResource("CircleShape2D_n6mpj")
+debug_color = Color(0.614296, 0.498998, 0.54518, 0.42)
+
+[node name="punch2" type="Area2D" parent="Attacks"]
+position = Vector2(14, -24)
+script = ExtResource("15_8gd3u")
+metadata/_custom_type_script = "uid://m0ivgmhumvbc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/punch2"]
+shape = SubResource("CircleShape2D_gr36o")
+debug_color = Color(0.577318, 0.523635, 0.49604, 0.42)
+
+[node name="upercut" type="Area2D" parent="Attacks"]
+position = Vector2(12, -31)
+script = ExtResource("15_8gd3u")
+metadata/_custom_type_script = "uid://m0ivgmhumvbc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/upercut"]
+position = Vector2(-1, -1)
+rotation = 0.249965
+shape = SubResource("CapsuleShape2D_gr36o")
+
+[node name="AttTimer" type="Timer" parent="."]
+one_shot = true
