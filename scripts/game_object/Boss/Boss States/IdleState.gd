@@ -1,4 +1,7 @@
-class_name IdleState extends bossState
+extends bossState
+
+class_name IdleState
+
 
 var idleTime:float
 @onready var animation = parent.get_node("Visuals/Sprites")
@@ -13,6 +16,8 @@ func physicsUpdate(delta:float) ->void:
 		idleTime -= delta
 	else :
 		Transitioned.emit(self,"WanderState")
-		
+	
+	if parent.global_position.distance_to(player.global_position) <= detectionRange:
+		Transitioned.emit(self,"chaseState")
 		
 	handleGravity()

@@ -11,8 +11,8 @@ func Enter()->void :
 
 
 func physicsUpdate(delta:float) ->void :
-	var toPlayer = parent.global_position.direction_to(player.global_position).x 
-	direction = sign(toPlayer)
+	var toPlayer:Vector2 = parent.global_position.direction_to(player.global_position)
+	direction = sign(toPlayer.x)
 	parent.velocity.x = direction * chaseSpeed
 	
 	

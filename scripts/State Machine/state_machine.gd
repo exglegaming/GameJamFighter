@@ -1,6 +1,8 @@
 class_name StateMachine extends Node
 
-@export var initialState: State
+class_name StateMachine
+@export var initialState:State
+
 
 var currentState : State
 var States:Dictionary = {}

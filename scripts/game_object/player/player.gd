@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+
+
+class_name Player
 @export_category("Movement")
 @export var speed: float = 300.0
 @export var jump_velocity: float = -400.0
@@ -23,6 +26,7 @@ var imunityTime:float = 0.6
 var base_damage: float = 5
 var weapon: int = 0
 var didHitGround: bool = true
+var stunned:bool = false
 
 @onready var damage_interval_timer: Timer = $DamageIntervalTimer
 @onready var health_component: HealthComponent = $HealthComponent
@@ -33,13 +37,15 @@ var didHitGround: bool = true
 
 
 func _ready() -> void:
-	$HurtBox.body_entered.connect(on_body_entered)
-	$HurtBox.body_exited.connect(on_body_exited)
+	$HurtBox.area_entered.connect(on_body_entered)
+	$HurtBox.area_exited.connect(on_body_exited)
 	anim_sprite.animation_finished.connect(on_animation_finished)
 	damage_interval_timer.timeout.connect(damageIntervalEnded)
 
 
 func _process(delta: float) -> void:
+	if stunned :
+		return
 	if is_on_floor():
 		if didHitGround == false:
 			SoundEffectsPlayer.play_jump_end()
@@ -47,6 +53,9 @@ func _process(delta: float) -> void:
 
 		CoyoteTimer = coyoteTime
 	else:
+
+		didHitGround = false
+
 		didHitGround = false
 		var Gravity: float = get_gravity().y * delta
 
@@ -105,6 +114,7 @@ func update_animations(direction: float) -> void:
 	if direction > 0:
 		visuals.scale.x = 1
 		hitbox_component.scale.x = 1
+		
 	elif direction < 0:
 		visuals.scale.x = -1
 		hitbox_component.scale.x = -1
@@ -178,6 +188,7 @@ func on_animation_finished() -> void:
 func check_deal_damage() -> void:
 	if number_colliding_bodies == 0 || !damage_interval_timer.is_stopped():
 		return
+		anim_sprite.play("hit")
 	health_component.damage(1)
 	damage_interval_timer.start(imunityTime)
 
@@ -185,8 +196,7 @@ func damageIntervalEnded() -> void:
 	check_deal_damage()
 
 func on_body_entered(other_body: Node2D) -> void:
-	number_colliding_bodies += 1
-	check_deal_damage()
+	pass
 
 
 func on_body_exited(other_body: Node2D) -> void:
